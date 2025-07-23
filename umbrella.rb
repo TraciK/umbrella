@@ -6,6 +6,8 @@ require "http"
 # Hidden variables
 pirate_weather_api_key = ENV.fetch("PIRATE_WEATHER_API_KEY")
 
+
+
 # Assemble the full URL string by adding the first part, the API token, and the last part together
 pirate_weather_url = "https://api.pirateweather.net/forecast/Fuh1WZEWsG2BYST9ddTFgt9Vp2dV2TNt/41.8887,-87.6355"
 
@@ -24,7 +26,9 @@ pp "========================================
 ========================================
 Where are you?"
 
-their_city = gets
+their_city = gets.chomp
+
+their_city = "https://maps.googleapis.com/maps/api/geocode/json?address=Merchandise%20Mart%20Chicago&key=" + env.fetch("GMAPS_KEY")
 
 puts "Checking the weather at " + their_city.to_s + "...."
 puts "Your coordintes are " COORDINATES
@@ -36,5 +40,3 @@ If PERCENTAGE >= 15
 else
   pp "You don't need an umbrella."
 end
-pp
-
