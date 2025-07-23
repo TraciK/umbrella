@@ -19,9 +19,22 @@ parsed_response = JSON.parse(raw_response)
 currently_hash = parsed_response.fetch("currently")
 
 current_temp = currently_hash.fetch("temperature")
-pp "Where are you?"
+pp "========================================
+    Will you need an umbrella today?    
+========================================
+Where are you?"
 
 their_city = gets
 
-puts "The current temperature is " + current_temp.to_s + "."
+puts "Checking the weather at " + their_city.to_s + "...."
+puts "Your coordintes are " COORDINATES
+puts "It is currently " + current_temp.to_s + "."
+puts "Next hour: Rain is stopping in " + MINUTES + " min."
+puts "In 0 hours, there is a " + PERCENTAGE + "chance of precipitation."
+If PERCENTAGE >= 15
+  pp "You might want to take an umbrella!"
+else
+  pp "You don't need an umbrella."
+end
+pp
 
