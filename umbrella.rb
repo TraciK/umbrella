@@ -23,14 +23,39 @@ currently_hash = parsed_response.fetch("currently")
 current_temp = currently_hash.fetch("temperature")
 pp "========================================
     Will you need an umbrella today?    
-========================================
-Where are you?"
+    ========================================
+    Where are you?"
 
-their_city = gets.chomp
+user_location = gets.chomp.gsub(" ", "%20")
 
-their_city = "https://maps.googleapis.com/maps/api/geocode/json?address=Merchandise%20Mart%20Chicago&key=" + env.fetch("GMAPS_KEY")
+pp user_location
 
-puts "Checking the weather at " + their_city.to_s + "...."
+maps_url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + user_location + "key=" + env.fetch("GMAPS_KEY")
+
+require "http"
+
+resp = HTTP.get(maps_url)
+
+pp resp.to_s
+
+raw_response = resp.to_s
+
+require "json"
+
+parsed_response = JSON.parse(raw_response)
+
+pp parsed_response.fetch("results")
+
+first_result = results.at(0)
+
+geo = first_result.fetch("geometry")
+
+loc = geo.fetch("location")
+
+latitude = loc.fetch("lat")
+longitude = loc.fetch("lng")
+
+puts "Checking the weather at " + user_location.to_s + "...."
 puts "Your coordintes are " COORDINATES
 puts "It is currently " + current_temp.to_s + "."
 puts "Next hour: Rain is stopping in " + MINUTES + " min."
