@@ -56,7 +56,7 @@ latitude = loc.fetch("lat")
 longitude = loc.fetch("lng")
 
 puts "Checking the weather at " + user_location.to_s + "...."
-puts "Your coordintes are " COORDINATES
+puts "Your coordintes are #{latitude}, #{longitute}"
 puts "It is currently " + current_temp.to_s + "."
 puts "Next hour: Rain is stopping in " + MINUTES + " min."
 puts "In 0 hours, there is a " + PERCENTAGE + "chance of precipitation."
